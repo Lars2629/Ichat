@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  /* Estilização dos elementos gerais */
+  body {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
+  }
+  .container {
+    max-width: 950px;
+    height: 100%;
+    margin: 0 auto;
+  }
+  ul {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  /* Estilização do header */
+  header {
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid #cacaca;
+  }
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo-insta img {
+    width: 120px;
+    height: 100%;
+    margin-right: 100px;
+  }
+  .search {
+    display: flex;
+    background-color: #f1f1f1;
+    min-width: 220px;
+    height: 25px;
+    border-radius: 5px;
+    padding: 5px 15px;
+    align-items: center;
+  }
+  .search img {
+    width: 15px;
+    height: 15px;
+    margin-right: 15px;
+  }
+  .search p {
+    font-size: 16px;
+    color: #c3c3c3;
+  }
+  .nav-bar ul{
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  .nav-bar ul li img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  #photo-profile {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #000;
+  }
+  /* Estilização da section intro */
+  .intro {
+    height: 220px;
+  }
+  .intro .container {
+    display: flex;
+    margin-top: 30px;
+    border-bottom: 1px solid #cacaca;
+  }
+  .photo-profile {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+  .photo-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    flex: 2;
+  }
+  .nickname {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+  }
+  .nickname p {
+    font-size: 25px;
+    color: #383838;
+    font-weight: 300;
+    margin-right: 20px;
+  }
+  .nickname button {
+    padding: 6px 12px;
+    background-color: #f8f8f8;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    margin-right: 10px;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+  }
+  .nickname img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .numeros {
+    margin-bottom: 20px;
+  }
+  .numeros ul {
+    display: flex;
+    gap: 50px;
+  }
+  .numeros ul li span {
+    font-weight: bolder;
+  }
+  #name {
+    font-weight: 600;
+  }
+  .bio p {
+    line-height: 25px;
+  }
+  .opcoes ul {
+    display: flex;
+    justify-content: center;
+  }
+  .opcoes ul li {
+    display: flex;
+    align-items: center;
+    margin: 0 30px;
+    padding-top: 20px;
+    cursor: pointer;
+  }
+  #publicacoes {
+    border-top: 1px solid #000;
+  }
+  .opcoes ul li img {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+  }
+  .opcoes ul li p {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .postagens {
+    display: flex;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .postagens img {
+    width: 293px;
+    height: 293px;
+    margin-bottom: 28px;
+  }
+  footer .container {
+    padding-bottom: 30px;
+  }
+  .links {
+    margin-bottom: 30px;
+  }
+  .links ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .links ul li a {
+    font-size: 12px;
+    color: #c3c3c3;
+  }
+  .finalizacao {
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
+  .finalizacao p {
+    font-size: 12px;
+    color: #c3c3c3;
+  }
+  .finalizacao p span {
+    font-weight: 600;
+  }

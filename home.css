@@ -1,0 +1,656 @@
+@font-face {
+    font-family: 'poppins';
+    src: url('Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'poppins_bold';
+    src: url('Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'sf_regular';
+    src: url('SFPRODISPLAYREGULAR.OTF');
+}
+
+@font-face {
+    font-family: 'sf_bold';
+    src: url('SFPRODISPLAYBOLD.OTF');
+}
+
+@font-face {
+    font-family: 'sf_medium';
+    src: url('SFPRODISPLAYMEDIUM.OTF');
+}
+
+@font-face {
+    font-family: 'sf_thin_italic';
+    src: url('SFPRODISPLAYTHINITALIC.OTF');
+}
+
+*{
+
+    font-family: 'sf_regular', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+html, body {
+
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background-color: #ebebeb;
+    overflow-y: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling for mobile */
+    scrollbar-width: none; /* For Firefox */
+}
+
+/* header */
+
+.navbar {
+
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 5px 0px #000000a2;
+    z-index: 200;
+}
+
+.left_icon {
+
+    margin-left: 20px;
+    display: flex;
+    font-size: 2.5rem;
+    align-items: center;
+}
+
+.logo {
+
+    margin-right: 5px;
+}
+
+/* search */
+
+.search {
+
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #a8a8a8;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.search_btn {
+
+    display: flex;
+    align-items: center;
+    background: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 200,
+  'opsz' 48
+}
+
+.right_icon {
+
+    margin-right: 20px;
+    display: flex;
+}
+
+.notif_icon {
+
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background: none;
+}
+
+.notif_icon:hover {
+
+    background: linear-gradient(90deg, #595bf1 0%, rgba(148, 134, 241, 0.8) 100%);
+    color: #fff;
+    border: #fff;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 48;
+  
+  font-size: 30px;
+}
+
+.profile {
+
+    border-radius: 50%;
+    box-shadow:  5px 5px 10px #a8a8a8;
+}
+
+/* notification dropdown */
+
+.notif_dropdown {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 12%; /* Adjust this based on your button size */
+    right: 5%;
+    background: none;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 300;
+    overflow: hidden;
+}
+
+/* Dropdown title */
+.notif_title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.notif_text {
+
+    position: relative;
+    display: flex;
+    top: 0;
+    width: 100%;
+    padding: 15px;
+    align-items: center;
+
+    background: linear-gradient(147.8deg, #595bf172 -33.49%, rgba(148, 134, 241, 0.2) 63.89%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur( 10px );
+}
+
+/* Show dropdown when button is clicked */
+.notif_dropdown.show {
+    display: block;
+}
+
+.follow_request {
+
+    width: 100%;
+    margin-left: 3%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.follow_request:hover {
+
+    color: #9f1bf7;
+}
+
+.request_text_group {
+
+    margin-left: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.request_text_follow {
+
+    font-size: 1rem;
+}
+
+.request_text_plus {
+
+    font-size: 0.7rem;
+}
+
+.notif_white_bg {
+
+    width: 100%;
+    padding-top: 2%;
+    padding: 5%;
+    background-color: #fff;
+}
+
+/* earlier */
+
+.earlier {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.earlier_wrapper {
+
+    width: 100%;
+    margin-bottom: 7%;
+    display: flex;
+}
+
+.earlier_wrapper:hover {
+
+    color: #9f1bf7;
+}
+
+.earlier_text {
+
+    margin-bottom: 8%;
+    font-family: 'sf_bold';
+    font-size: 1rem;
+}
+.friend-item {
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.friend-item input[type="checkbox"] {
+    display: none; /* Hide checkbox */
+}
+
+.friend-item label {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    width: calc(100% - 20px); /* Ensure label is full width minus padding */
+}
+
+.friend-item label:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.notif_line {
+
+    border: none;
+    border-top: 1px solid #000;
+}
+
+.notif_user_img {
+
+    margin-right: 4%;
+    border-radius: 50px;
+}
+
+.notif_group_text {
+
+    display: flex;
+    align-items: center;
+}
+
+.user_text {
+    
+    font-family: 'sf_bold';
+    font-size: 0.8rem;
+}
+
+.notif_info {
+
+    font-size: 0.8rem;
+}
+
+.notif_post_img {
+
+    position: absolute;
+    right: 4%;
+    border-radius: 5px;
+}
+
+/* main */
+
+.main {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* menu */
+
+.menu {
+
+    position: fixed;
+    top: 10%;
+    left: 0;
+    justify-content: flex-start;
+    /* align-items: center; */
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    z-index: 100;
+}
+
+.menu_profile {
+
+    margin-top: 50px;
+    margin-left: 5px;
+}
+
+.profile_name {
+
+    margin-left: 15px;
+}
+
+.icons_menu {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 100px;
+    margin-top: 20px;
+    font-size: 1rem;
+    padding-left: 30px;
+}
+
+.icon_wrapper {
+
+    width: 180px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+.icon_wrapper:hover {
+
+    border-radius: 50px;
+    background: linear-gradient(90deg, #598cf16f 0%, rgba(148, 134, 241, 0.803) 100%);
+}
+
+.icons {
+
+    fill: #626262;
+}
+
+.icons:hover {
+
+    fill: #000;
+}
+
+.icon_name {
+
+    margin-left: 10px;
+}
+
+/* post feed */
+
+.post_feed {
+
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    height: max-content;
+}
+
+.post_story {
+
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    overflow-x: auto;  /*Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of children */
+
+    /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+    -webkit-overflow-scrolling: touch; /* Enable smooth scrolling for mobile */
+    scrollbar-width: none; /* For Firefox */
+}
+
+/* Show scrollbar when hovering over the .post_story */
+.post_story:hover {
+    overflow-x: auto; /* Show scrollbar on hover */
+    scrollbar-width: auto; /* For Firefox, show scrollbar */
+}
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+.post_story::-webkit-scrollbar {
+    display: none; /* Initially hide scrollbar */
+}
+
+/* Show scrollbar on hover for WebKit (Chrome, Safari) */
+.post_story:hover::-webkit-scrollbar {
+    display: block;
+    height: 8px; /* Adjust the scrollbar height */
+}
+
+/* Style the WebKit scrollbar */
+.post_story::-webkit-scrollbar-thumb {
+    background-color: #9f1bf7; /* Scrollbar thumb (handle) color */
+    border-radius: 4px;
+}
+
+.post_story_user {
+
+    min-width: 80px; /* Set minimum width to make sure each item has a consistent width */
+    display: inline-flex; /* Use inline-flex to respect white-space: nowrap */
+    flex-direction: column;
+    align-items: center;
+    margin-right: 58px;
+    margin-bottom: 10px;
+}
+
+.post_story_user_img {
+
+    border-radius: 50px;
+    border: 3px solid #a01bf7;
+    margin-bottom: 10px;
+}
+
+.post_story_user_text {
+
+    font-size: 0.8rem;
+}
+
+/* main post */
+
+.post {
+
+    position: relative;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    background: #FFF;
+    padding: 3%;
+    margin-bottom: 5%;
+    border-radius: 10px;
+}
+
+.upper_post_tag {
+
+    display: flex;
+    width: 100%;
+}
+
+.user_profile {
+
+    border-radius: 50%;
+    box-shadow:  0px 1px 4px 1px #a8a8a8;
+    margin-right: 10px;
+}
+
+.post_text {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post_time {
+
+    font-size: 0.8rem;
+}
+
+.post_description {
+
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 15px;
+}
+
+.text_description {
+
+    font-size: 1rem;
+}
+
+.text_hashtag {
+
+    font-size: 1rem;
+    color: #2200ff;
+}
+
+.post_img_wrapper {
+
+    margin-top: 5px;
+    width: 100%;
+}
+
+.post_img {
+  
+    width: 100%;
+    height: auto;
+}
+
+.post_icons {
+
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post_icon_wrapper {
+
+    width: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.post_icon_text {
+
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+.post_icon_btn {
+
+    background: none;
+    outline: none;
+    width: 32px;
+    height: 32px;
+}
+
+.toggle_btn {
+
+    position: absolute;
+    right: 5%;
+}
+
+ion-icon {
+
+    font-size: 32px;
+    cursor: pointer;
+}
+
+/* post icon button on-click */
+
+.post_icon_btn.clicked {
+    color: #ff0000; /* This will change the icon to red */
+}
+
+
+/* follow */
+
+.follow {
+
+    position: fixed;
+    right: 0;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    z-index: 100;
+}
+
+.suggest {
+
+    font-size: 1.2rem;
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.follow_wrapper {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.follow_container {
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-top: 50px;
+    padding-right: 10px;
+}
+
+.follow_name {
+
+    font-size: 1rem;
+}
+
+.follow_description {
+
+    font-size: .6rem;
+}
+
+.follow_icon {
+
+    margin-left: 30px;
+}
+
+.follow_profile {
+
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.btn_follow {
+
+    background: none;
+}
+
