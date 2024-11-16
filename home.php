@@ -45,6 +45,7 @@ function timeAgo($datetime) {
     <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=library_add,notifications" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="view_stories.css"
     <script src="https://kit.fontawesome.com/fa0399c701.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="home.css">
 </head>
@@ -184,52 +185,42 @@ function timeAgo($datetime) {
     </div>
 
     <main class="main">
-
         <!-- post feed -->
-        <section class="post_feed">
+          <section class="post_feed">
+        <?php
+        $sql = "SELECT DISTINCT users.user_id, users.username, users.profile_picture,
+        (SELECT COUNT(1) 
+         FROM story_views 
+         JOIN stories ON story_views.story_id = stories.story_id
+         WHERE story_views.user_id = $user_id 
+           AND story_views.story_id = stories.story_id 
+           AND stories.user_id = users.user_id) AS viewed
+        FROM stories
+        JOIN users ON stories.user_id = users.user_id
+        WHERE stories.status = 'active' AND stories.expires_at > NOW()
+        ORDER BY stories.created_at DESC";
+
+$result = $conn->query($sql);
+if ($result->num_rows>0){
+  while($story = $result->fetch_assoc()){
+    $borderClass = ($story['viewed'] == 0) ? "not-viewed" : "viewed";
+    echo '      
             <div class="post_story">
-
                 <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic1.jpg">
-                    <p class="post_story_user_text">Your story</p>
+                    <img class="profile-picture $borderClass" data-user-id="' . $story['user_id'] . '" width="60px" height="60px" src="'.$story['profile_picture'].'">
+                    <p class="post_story_user_text"></p>
                 </div>
 
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic2.jpg">
-                    <p class="post_story_user_text">Wannabie</p>
-                </div>
+            </div>';
+  }
+}
 
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic3.jpg">
-                    <p class="post_story_user_text">Norris</p>
-                </div>
-
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic4.jpg">
-                    <p class="post_story_user_text">Kler</p>
-                </div>
-
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic5.jpg">
-                    <p class="post_story_user_text">Cee</p>
-                </div>
-
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic6.jpg">
-                    <p class="post_story_user_text">Isha</p>
-                </div>
-
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic4.jpg">
-                    <p class="post_story_user_text">Isha</p>
-                </div>
-
-                <div class="post_story_user">
-                    <img class="post_story_user_img" width="60px" height="60px" src="profile_pic7.jpg">
-                    <p class="post_story_user_text">Isha</p>
-                </div>
-
-            </div>
+            ?>
+<div class="story-overlay" id="storyOverlay">
+    <span class="close-btn" onclick="closeStory()">&#10006;</span>
+    <img id="storyContent" class="story-content" src="" alt="Story Content">
+    <p id="storyCaption"></p>
+</div>
 
             <!-- user's post -->
             <?php
@@ -632,7 +623,58 @@ function savePost(postId) {
     xhr.send("post_id=" + postId + "&user_id=" + userId);
 }
 
+let userStories = {};
 
+// Fetch stories for each user when a profile picture is clicked
+document.querySelectorAll('.profile-picture').forEach(pic => {
+    pic.addEventListener('click', function () {
+        let userId = this.getAttribute('data-user-id');
+        showStories(userId);
+    });
+});
+
+// Function to load and show stories
+function showStories(userId) {
+    if (!userStories[userId]) {
+        // Fetch stories via AJAX if not already fetched
+        fetch(`fetch_stories.php?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                userStories[userId] = data;
+                displayStory(userId, 0);
+            });
+    } else {
+        // Display already fetched stories
+        displayStory(userId, 0);
+    }
+}
+
+// Function to display a single story and handle timing
+function displayStory(userId, storyIndex) {
+    const stories = userStories[userId];
+    if (stories && storyIndex < stories.length) {
+        const story = stories[storyIndex];
+        
+        // Set story content and show overlay
+        document.getElementById('storyContent').src = story.content_url;
+        document.getElementById('storyCaption').innerText = story.text_caption;
+        document.getElementById('storyOverlay').style.display = 'flex';
+
+        // Auto-close after 5 seconds or show the next story
+        setTimeout(() => {
+            if (storyIndex + 1 < stories.length) {
+                displayStory(userId, storyIndex + 1);
+            } else {
+                closeStory();
+            }
+        }, 5000);
+    }
+}
+
+// Function to close the story overlay
+function closeStory() {
+    document.getElementById('storyOverlay').style.display = 'none';
+}
     </script>
     <script src = "home.js"></script>
 </body>
